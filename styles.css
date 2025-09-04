@@ -1,0 +1,201 @@
+:root {
+    --bg-color: #f3f4f6;
+    --text-color: #1f2937;
+    --panel-bg: #e5e7eb;
+    --button-bg: #d1d5db;
+    --button-hover-bg: #9ca3af;
+    --panel-text: #1f2937;
+    --accent-bg: #4b5563;
+    --accent-text: #f3f4f6;
+}
+.dark-theme {
+    --bg-color: #1f2937;
+    --text-color: #f3f4f6;
+    --panel-bg: #111827;
+    --button-bg: #374151;
+    --button-hover-bg: #4b5563;
+    --panel-text: #d1d5db;
+    --accent-bg: #6b7280;
+    --accent-text: #f3f4f6;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    flex-direction: column;
+    overflow: hidden;
+}
+.calculator-container {
+    display: flex;
+    flex-direction: row;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 1000px;
+    width: 100%;
+}
+.main-calculator {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    padding: 2rem;
+    gap: 1rem;
+}
+.display {
+    background-color: var(--panel-bg);
+    color: var(--panel-text);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    text-align: right;
+    font-size: 2.5rem;
+    font-weight: 500;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    word-wrap: break-word;
+    overflow: hidden;
+}
+.sub-display {
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.75rem;
+}
+.calc-button {
+    padding: 1.5rem 0.5rem;
+    background-color: var(--button-bg);
+    border-radius: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.calc-button:hover {
+    background-color: var(--button-hover-bg);
+}
+.calc-button:active {
+    transform: scale(0.95);
+}
+.accent-button {
+    background-color: var(--accent-bg);
+    color: var(--accent-text);
+}
+.accent-button:hover {
+    background-color: var(--accent-bg);
+    filter: brightness(1.2);
+}
+.calc-button.active-operator {
+    background-color: var(--accent-bg);
+    color: var(--accent-text);
+    box-shadow: 0 0 0 3px var(--accent-bg);
+    transform: scale(1.05);
+}
+.zero {
+    grid-column: span 2;
+}
+.history-panel {
+    background-color: var(--panel-bg);
+    color: var(--panel-text);
+    width: 300px;
+    max-width: 0;
+    overflow: hidden;
+    transition: max-width 0.3s ease-in-out;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+}
+.history-panel.open {
+    max-width: 300px;
+    padding: 2rem;
+}
+.history-content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.history-panel h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--button-bg);
+    padding-bottom: 0.5rem;
+}
+#history-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--button-bg);
+    cursor: pointer;
+}
+#history-list li:hover {
+    opacity: 0.8;
+}
+.download-button {
+    width: 100%;
+    margin-top: auto;
+    background-color: var(--accent-bg);
+    color: var(--accent-text);
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.download-button:hover {
+    filter: brightness(1.2);
+}
+.message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--panel-bg);
+    color: var(--panel-text);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+.message-box button {
+    background-color: var(--accent-bg);
+    color: var(--accent-text);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+@media (max-width: 768px) {
+    .calculator-container {
+        flex-direction: column;
+    }
+    .history-panel {
+        width: 100%;
+        max-width: 100%;
+        padding: 1rem;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease-in-out;
+    }
+    .history-panel.open {
+        height: 300px;
+    }
+    .main-calculator {
+        padding: 1rem;
+    }
+}
